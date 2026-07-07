@@ -13,23 +13,7 @@ Each model's output feeds the next. PPO is the only model that *acts* — the
 other three are signal generators. Every trade gets a plain-English reason
 logged alongside it.
 
-## Why this is different
 
-Most student ML-trading projects do **one** of: classical ML, deep
-learning, NLP, or RL. AlphaSignal runs all four in a single sequential
-inference pipeline, and every trade comes with a human-readable
-explanation — the kind of line an analyst would actually write:
-
-> *LSTM projects 1.80% upside (target close: $941.20). RF signals UP
-> momentum with 72% probability (RSI 58, MACD crossover). Volume 1.8x above
-> average — strong conviction. News sentiment STRONGLY POSITIVE (+0.65).
-> RL policy confirms BUY (confidence: 81%).*
-
-That reasoning column is what gets screenshotted.
-
-## Live demo
-
-`https://alphasignal-frontend.onrender.com` _(update after deploy)_
 
 ## Architecture
 
