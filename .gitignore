@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# Model checkpoints (large binary files — regenerate via notebooks/train_offline.ipynb)
+backend/checkpoints/*.pkl
+backend/checkpoints/*.pt
+backend/checkpoints/*.zip
+!backend/checkpoints/.gitkeep
+
+# Trade data (regenerated at runtime)
+backend/data/trades.csv
+
+# Env files
+.env
+backend/.env
+frontend/.env
+
+# Node
+node_modules/
+frontend/build/
+npm-debug.log*
+
+# OS / editor
+.DS_Store
+.vscode/
+*.swp
+
+# Jupyter
+.ipynb_checkpoints/

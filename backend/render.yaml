@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: alphasignal-api
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: NEWSAPI_KEY
+        sync: false
+      - key: PORT
+        value: 8000
+    healthCheckPath: /health
+    autoDeploy: true
