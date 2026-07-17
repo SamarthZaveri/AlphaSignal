@@ -9,7 +9,7 @@ import logging
 
 logger = logging.getLogger(__name__)
 
-ASSETS = ["NVDA", "MSFT", "GOOGL", "GLD", "USO"]
+ASSETS = ["NVDA", "MSFT", "GOOGL", "GLD", "USO"]  # v1 — kept for the v1-baseline comparison (FR6)
 
 
 def fetch_latest(ticker: str, period: str = "5d", interval: str = "1m") -> pd.DataFrame:
@@ -68,6 +68,27 @@ def fetch_all_historical() -> dict:
         if not df.empty:
             results[ticker] = df
             logger.info(f"Historical: {len(df)} days for {ticker}")
+    return results
+
+
+def fetch_historical_universe(period: str = "2y", interval: str = "1d") -> dict:
+    """
+    v2: fetch historical daily data for the full config.TICKERS universe
+    (30-40 tickers), not just the v1 5-asset ASSETS list.
+
+    Reuses fetch_historical per-ticker so caching/error-handling stays in
+    one place; graph_builder.py and correlation_edges.py consume this.
+    """
+    from app.config import TICKERS
+
+    results = {}
+    for ticker in TICKERS:
+        df = fetch_historical(ticker, period=period, interval=interval)
+        if not df.empty:
+            results[ticker] = df
+            logger.info(f"[v2 universe] {len(df)} days for {ticker}")
+        else:
+            logger.warning(f"[v2 universe] no data for {ticker} — will be dropped from graph")
     return results
 
 
